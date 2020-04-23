@@ -1,6 +1,5 @@
 import React from "react"
 import "./Kandy.css"
-import "./location/Location.css"
 import LocationList from "./location/LocationList"
 import ProductList from "./products/ProductList"
 import { LocationProvider } from "./location/LocationProvider"
@@ -15,20 +14,19 @@ export default () => (
     <>
 <h1>Welcome to Kandy Korner!</h1>
     
-    <LocationProvider>
         <ProductProvider>
             <ProductTypeProvider>
-                    <EmployeeProvider>
-                    <h2>Locations</h2>
-                    <LocationList />
-                    <h2>Products</h2>
-                    <ProductList />
-                    <h2>Employees</h2>
-                    <EmployeeList />
+                <EmployeeProvider>
+                    <LocationProvider>
+                        <h2>Locations</h2>
+                        <LocationList />
+                        <h2>Products</h2>
+                        <ProductList />
+                        <h2>Employees</h2>
+                        <EmployeeList />
+                    </LocationProvider>
                 </EmployeeProvider>
             </ProductTypeProvider>
         </ProductProvider>
-    </LocationProvider>
-
     </>
 )
