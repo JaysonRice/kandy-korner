@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react"
 import { EmployeeContext } from "./EmployeeProvider"
 import Employee from "./Employee"
-import { LocationContext } from "../location/LocationProvider"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap"
 import EmployeeForm from "./EmployeeForm"
 
@@ -13,7 +12,7 @@ export default () => {
 
     return (
         <>
-            <Button className="href" onClick={toggle}>Add New Employee</Button>
+            <Button outline color="info" className=" employeeButton href" onClick={toggle}>Add New Employee</Button>
 
             <div className="employees">
                 {
