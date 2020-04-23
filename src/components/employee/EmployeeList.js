@@ -7,7 +7,6 @@ import EmployeeForm from "./EmployeeForm"
 
 export default () => {
     const { employees } = useContext(EmployeeContext)
-    const { locations } = useContext(LocationContext)
 
     const [modal, setModal] = useState(false)
     const toggle = () => setModal(!modal)
@@ -19,9 +18,8 @@ export default () => {
             <div className="employees">
                 {
                     employees.map(employee => {
-                        const loc = locations.find(l => l.id === employee.locationId)
 
-                        return <Employee key={employee.id} location={loc} employee={employee} />
+                        return <Employee key={employee.id} employee={employee} />
                     })
                 }
             </div>
