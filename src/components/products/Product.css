@@ -1,0 +1,14 @@
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .product {
+      flex-basis: 26%;
+      margin: 1em;
+      padding: 1em;
+      border: 2px dotted slateblue;
+      background-color: beige;
+      text-align: center;
+  }
