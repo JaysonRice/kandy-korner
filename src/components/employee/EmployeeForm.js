@@ -8,18 +8,27 @@ export default props => {
     const { locations } = useContext(LocationContext)
     const name = useRef()
     const location = useRef()
-    const address = useRef()
+    const manager = useRef()
+    const fullTime = useRef()
+    const hourlyRate = useRef()
 
     const constructNewEmployee = () => {
         const locationId = parseInt(location.current.value)
+        const isManager = (manager.current.value === "Manager" ? true : false)
+        const isFullTime = (manager.current.value === "Full Time" ? true : false)
+        const rate = parseInt(hourlyRate.current.value)
 
         if (locationId === 0) {
-            window.alert("Please select a location")
+            window.alert("Please select a location.")
+        } else if (typeof rate !== "undefined" && !rate) {
+            window.alert("Integers and decimals only.")
         } else {
             addEmployee({
                 name: name.current.value,
                 locationId: locationId,
-                address: address.current.value
+                manager: isManager,
+                fullTime: isFullTime,
+                hourlyRate: rate
             })
             .then(props.toggler)
         }
@@ -27,7 +36,6 @@ export default props => {
 
     return (
         <form className="employeeForm">
-            <h2 className="employeeForm__title">New Employee</h2>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="employeeName">Employee name: </label>
@@ -42,20 +50,7 @@ export default props => {
                     />
                 </div>
             </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="employeeAddress">Address: </label>
-                    <input
-                        type="text"
-                        id="employeeAddress"
-                        ref={address}
-                        required
-                        autoFocus
-                        className="form-control"
-                        placeholder="Street address"
-                    />
-                </div>
-            </fieldset>
+
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="location">Assign to location: </label>
@@ -75,6 +70,58 @@ export default props => {
                     </select>
                 </div>
             </fieldset>
+
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="employeeRole">Employee role: </label>
+                    <select
+                        defaultValue=""
+                        name="employeeRole"
+                        ref={manager}
+                        id="employeeRole"
+                        className="form-control"
+                    >
+                        <option value="0">Select a role</option>
+                            <option>Manager</option>
+                            <option>Worker</option>
+                        ))}
+                    </select>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="fullTime">Employee hours: </label>
+                    <select
+                        defaultValue=""
+                        name="fullTime"
+                        ref={fullTime}
+                        id="employeeLocation"
+                        className="form-control"
+                    >
+                        <option value="0">Select a status</option>
+                            <option>Full Time</option>
+                            <option>Part Time</option>
+                        ))}
+                    </select>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="hourlyRate">Hourly rate: </label>
+                    <input
+                        type="number"
+                        id="hourlyRate"
+                        ref={hourlyRate}
+                        required
+                        autoFocus
+                        className="form-control"
+                        placeholder="$"
+                    />
+                </div>
+            </fieldset>
+
             <button type="submit"
                 onClick={
                     evt => {
