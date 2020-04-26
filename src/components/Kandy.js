@@ -1,32 +1,12 @@
-import React from "react"
-import "./Kandy.css"
-import LocationList from "./location/LocationList"
-import ProductList from "./products/ProductList"
-import { LocationProvider } from "./location/LocationProvider"
-import { ProductProvider } from "./products/ProductProvider"
-import { EmployeeProvider } from "./employee/EmployeeProvider"
-import { ProductTypeProvider } from "./products/ProductTypeProvider"
-import EmployeeList from "./employee/EmployeeList"
+import React, { useState } from "react"
+import { Dashboard } from "./Dashboard"
+import Auth from "./auth/Auth"
 
+export const Kandy = () => {
+    const [check, update] = useState(false)
+    const toggle = () => update(!check)
 
-
-export default () => (
-    <>
-<h1>Welcome to Kandy Korner!</h1>
-    
-        <ProductProvider>
-            <ProductTypeProvider>
-                <EmployeeProvider>
-                    <LocationProvider>
-                        <h2>Locations</h2>
-                        <LocationList />
-                        <h2>Products</h2>
-                        <ProductList />
-                        <h2>Employees</h2>
-                        <EmployeeList />
-                    </LocationProvider>
-                </EmployeeProvider>
-            </ProductTypeProvider>
-        </ProductProvider>
-    </>
-)
+    return (
+        localStorage.getItem("kandy_customer") ? <Dashboard /> : <Auth toggle={toggle} />
+    )
+}

@@ -64,8 +64,8 @@ input[type="password"] {
     background-image: url(logo.png);
     z-index: 1;
     min-height: 25rem;
-    min-width: 35rem;
-    background-color: hsla(0,0%,100%,0.40);
+    min-width: 40rem;
+    background-color: hsla(0,0%,100%,0.5);
     background-blend-mode: overlay;
     background-repeat: no-repeat;
     display: inline-block;
